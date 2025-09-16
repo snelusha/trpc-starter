@@ -1,11 +1,11 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
-import { pingRouter } from "~/server/api/routers/ping";
+import { taskRouter } from "~/server/api/routers/task";
 
 import type { inferRouterOutputs } from "@trpc/server";
 
 export const appRouter = createTRPCRouter({
-  ping: pingRouter,
+  task: taskRouter,
 });
 
 export const createCaller = createCallerFactory(appRouter);

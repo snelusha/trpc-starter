@@ -1,11 +1,15 @@
 import { cache } from "react";
 
-import { initTRPC, TRPCError } from "@trpc/server";
+import { initTRPC } from "@trpc/server";
 
 import superjson from "superjson";
 
+import { db } from "~/lib/prisma";
+
 export const createTRPCContext = cache(async (opts: { headers: Headers }) => {
   return {
+    db,
+    something: "something",
     ...opts,
   };
 });
