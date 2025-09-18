@@ -12,6 +12,8 @@ import superjson from "superjson";
 
 import { makeQueryClient } from "~/trpc/query-client";
 
+import { env } from "~/env";
+
 import type { QueryClient } from "@tanstack/react-query";
 import type { AppRouter } from "~/server/api/root";
 
@@ -26,8 +28,8 @@ function getQueryClient() {
 function getUrl() {
   const base = (() => {
     if (!isServer) return "";
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    return process.env.NEXT_PUBLIC_APP_URL;
+    if (env.VERCEL_URL) return `https://${env.VERCEL_URL}`;
+    return env.NEXT_PUBLIC_APP_URL;
   })();
   return `${base}/api/trpc`;
 }
@@ -52,7 +54,7 @@ export function TRPCProvider(
         }),
         loggerLink({
           enabled: (opts) =>
-            process.env.NODE_ENV === "development" ||
+            env.NODE_ENV === "development" ||
             (opts.direction === "down" && opts.result instanceof Error),
         }),
       ],
