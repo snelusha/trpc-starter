@@ -9,7 +9,6 @@ import { db } from "~/lib/prisma";
 export const createTRPCContext = cache(async (opts: { headers: Headers }) => {
   return {
     db,
-    something: "something",
     ...opts,
   };
 });
